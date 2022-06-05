@@ -1,0 +1,27 @@
+td{
+    padding: 0px;
+    padding-bottom: 0px;
+    margin: 0px;
+    border: none;
+
+}
+table{
+    padding: 0px;
+    margin: 0px;
+    border: none;
+    /* margin-top: 100px; */
+}
+tr{
+    padding: 0px;
+    margin: 0px;
+    border: none;
+    padding-bottom: 0px;
+    
+}
+table, tbody, tr{
+    display: block;
+}
+hr{
+    margin: 0px;
+    padding: 0px;
+}
