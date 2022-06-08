@@ -9,7 +9,7 @@ let highScoreDisplay = document.getElementById("highScore")
 highScoreDisplay.innerHTML = `Highest Score: ${localStorage.getItem(highScore)? localStorage.getItem(highScore): totalPoints}`
 let displacement = 1;
 let allObjects = [[152,1],[153,1],[152,2],[153,2],[152,3],[153,3],[152,4],[153,4]]
-let pinkudi = [[30,1],[31,1],[30,2],[31,2]]
+let corvus = [[30,1],[31,1],[30,2],[31,2]]
 
 let point1 = [3,4]
 function render(){
@@ -18,7 +18,7 @@ function render(){
     for (let i=0;i<yl;i++){
         pattern += `<tr>`
         for(let k = 0;k<155;k++){
-                    pattern += `<td>${k==0||i==0||k==154 || renderObj(allObjects,i,k)||renderRaven(pinkudi,i,k)?"*":"&nbsp;&nbsp;"}</td>`
+                    pattern += `<td>${k==0||i==0||k==154 || renderObj(allObjects,i,k)||renderRaven(corvus,i,k)?"*":"&nbsp;&nbsp;"}</td>`
                     }
         pattern +="</tr>"
     }
@@ -51,9 +51,9 @@ function frameMove(){
     
 }
 
-function renderRaven(pinkudi,i,k){
+function renderRaven(corvus,i,k){
     let returnBool = false
-    pinkudi.forEach(point=>{
+    corvus.forEach(point=>{
         if((point[0]==k)&&((yl-point[1]==i))){
             returnBool = true
         }
@@ -62,14 +62,14 @@ function renderRaven(pinkudi,i,k){
 }
 
 function collide(){
-    for (let i = 0; i < pinkudi.length; i++) {
+    for (let i = 0; i < corvus.length; i++) {
         for (let k = 0; k < allObjects.length; k++) {
-            if ((pinkudi[i][0] == allObjects[k][0])&&(pinkudi[i][1] == allObjects[k][1])) {
+            if ((corvus[i][0] == allObjects[k][0])&&(corvus[i][1] == allObjects[k][1])) {
                 gameOver()
             }   
         }
     }
-    pinkudi.forEach(point => {
+    corvus.forEach(point => {
         if(point[1]>=yl){
             gameOver()
         }
@@ -115,21 +115,21 @@ function pushObjects(){
 document.addEventListener('keydown',(e)=>{
     // console.log(e)
     if(e.key == "ArrowUp" ){
-        movePinkudi("ArrowUp")
+        movecorvus("ArrowUp")
     }else if(e.key == "ArrowDown"){
-        movePinkudi("ArrowDown")
+        movecorvus("ArrowDown")
     }
 })
 
-// let pinkudi = [[30,1],[31,1],[30,2],[31,2]]
-function movePinkudi(e){
+// let corvus = [[30,1],[31,1],[30,2],[31,2]]
+function movecorvus(e){
     if(e=="ArrowUp"){
-        pinkudi.forEach(point => {
+        corvus.forEach(point => {
            point[1] = point[1] + displacement;
         });
     }else if(e == "ArrowDown"){
-        if(pinkudi[0][1]>1){
-            pinkudi.forEach(point=>{
+        if(corvus[0][1]>1){
+            corvus.forEach(point=>{
                 point[1]=point[1]-displacement
             })
         }
@@ -137,11 +137,15 @@ function movePinkudi(e){
 }
 
 function countPoints(){
-        if(pinkudi[0][1]==1){
+        if(corvus[0][1]==1){
             totalPoints++
             pointsDisplay.innerHTML = `Your Points : ${totalPoints}`
         }  
 }
 
+// console.log(window.scrollY + document.querySelector('table').getBoundingClientRect().bottom)
+// document.addEventListener("click",(e)=>{
+//     console.log(e.clientX)
+// })
 setTimeout(pushObject, 3000)
 const despacito = setInterval(render,1)
