@@ -1,0 +1,6 @@
+# game
+Not a single part of the code is taken from internet 
+Everything straight out of my brain 🧠.
+I just made it my head 
+Then made it in my lappy.
+:)
